@@ -23,7 +23,7 @@ a pocketmine plugin where rewards are set depending on commands given by the own
 
 # 🔧 How to install EventBonus? 
 How to install EventBonus?
-1) [Download](https://poggit.pmmp.io/ci/EventBonus/~) latest stable version from poggit  
+1) [Download](https://poggit.pmmp.io/ci/Lentou/EventBonus/~) latest stable version from poggit  
 2) Move dowloaded file to your server **/plugins/** folder  
 3) Restart the server and enjoy!
 
