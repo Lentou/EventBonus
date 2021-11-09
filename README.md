@@ -18,9 +18,7 @@ Example:
 3) Restart the server and enjoy!
   
 ## ✍ EventBonus commands   
-<br>
-**Commands**  
-  
+<br> 
 | **Command** | **Description** |  
 | --- | --- |  
 | **/bonus** | **the main command of eventbonus** |
