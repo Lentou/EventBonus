@@ -55,7 +55,6 @@ class BonusCommand extends Command {
 				Main::getInstance()->makeBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully created a Bonus called " . $bonusName . ", do /bonus addplayer " . $bonusName . " <player> to add an player and received a reward when they joined or online!");
 				$sender->sendMessage(TextFormat::GREEN . "and do /bonus addcmd " . $bonusName . " <cmd_name> to add a command in event bonus reward!");
-				return true;
 			break;
 			case "del":
 				if (empty($args[1])) {
@@ -73,7 +72,6 @@ class BonusCommand extends Command {
 				
 				Main::getInstance()->delBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted the Bonus called " . $bonusName . ", no more rewards :(");
-				return true;
 			break;
 			case "addplayer":
 				if (empty($args[1]) or empty($args[2])) {
@@ -97,7 +95,6 @@ class BonusCommand extends Command {
 				
 				Main::getInstance()->addPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added " . $playerName . " in " . $bonusName . " bonus list!");
-				return true;
 			break;
 			case "delplayer":
 				if (empty($args[1]) or empty($args[2])) {
@@ -121,7 +118,6 @@ class BonusCommand extends Command {
 				
 				Main::getInstance()->delPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully removed " . $playerName . " in " . $bonusName . " bonus list!");
-				return true;
 			break;
 			case "addcmd":
 				if (empty($args[1]) or empty($args[2])) {
@@ -151,7 +147,6 @@ class BonusCommand extends Command {
 				
 				Main::getInstance()->addCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added /" . $cmdName . " in " . $bonusName . " bonus list!");
-				return true;
 			break;
 			case "delcmd":
 				if (empty($args[1]) or empty($args[2])) {
@@ -181,7 +176,6 @@ class BonusCommand extends Command {
 				
 				Main::getInstance()->delCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted /" . $cmdName . " in " . $bonusName . " bonus list!");
-				return true;
 			break;
 			case "setmsg":
 				if (empty($args[1]) or empty($args[2])) {
@@ -203,7 +197,6 @@ class BonusCommand extends Command {
 				$setMsg = trim(implode(" ", $args));
 				Main::getInstance()->setBonusMsg($setMsg, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully set the message of " . $bonusName);
-				return true;
 			break;
 			case "list":
 				$sender->sendMessage(TextFormat::YELLOW . "List of EventBonus:");
@@ -214,7 +207,6 @@ class BonusCommand extends Command {
 					$sender->sendMessage(TextFormat::GREEN . "- " . implode("\n", $value["cmds"]));
 					$sender->sendMessage(TextFormat::GREEN . "-- Message: " . $value["message"]);
 				}
-				return true;
 			break;
 			default:
 				$sender->sendMessage(TextFormat::YELLOW . "EventBonus Commands:");
