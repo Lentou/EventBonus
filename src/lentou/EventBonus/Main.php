@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace lentou\EventBonus;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
 use pocketmine\console\ConsoleCommandSender;
