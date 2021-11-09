@@ -5,4 +5,5 @@ branches:
 projects:
   EventBonus:
     path: ""
+    icon: icon.png
 ...
