@@ -19,9 +19,9 @@ Example:
   
 ## ✍ EventBonus commands   
 <br> 
-| **Command** | **Description** |  
-| --- | --- |  
-| **/bonus** | **the main command of eventbonus** |
+| **Command** | **Description** |  **Usage ** |
+| --- | --- |  --- |
+| **/bonus** | **the main command of eventbonus** | /bonus |
 
 | **Subcommands** | **Description** | **Usage** |
 | --- | --- | --- |
