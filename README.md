@@ -32,6 +32,7 @@ Example:
 | **delplayer** | deleting player in eventbonus | /bonus delplayer <bonus_name> <player_name> |
 | **addcmd** | adding command in eventbonus key | /bonus addcmd <bonus_name> <command> |
 | **delcmd** | deleting command in eventbonus key | /bonus delcmd <bonus_name> <command> |
+| **setmsg** | setting an message when the player received the reward bonus | /bonus setmsg <bonus_name> <msg> |
 | **list** | list of eventbonus keys | /bonus list |
 
 <br>
