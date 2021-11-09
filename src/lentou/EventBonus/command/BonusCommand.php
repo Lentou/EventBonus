@@ -111,7 +111,7 @@ class BonusCommand extends Command {
 					return false;
 				}
 				
-				if (in_array($playerName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
+				if (!in_array($playerName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
 					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " doesn't exists in " . $bonusName . " bonus list");
 					return false;
 				}
