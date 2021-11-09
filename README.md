@@ -1,31 +1,36 @@
 # EventBonus
 a pocketmine plugin where rewards are set depending on commands given by the owner
-<br>
 [![](https://poggit.pmmp.io/shield.state/EventBonus)](https://poggit.pmmp.io/p/EventBonus)
 <a href="https://poggit.pmmp.io/p/EventBonus"><img src="https://poggit.pmmp.io/shield.state/EventBonus"></a>
-<br>
 [![](https://poggit.pmmp.io/shield.api/EventBonus)](https://poggit.pmmp.io/p/EventBonus)
 <a href="https://poggit.pmmp.io/p/EventBonus"><img src="https://poggit.pmmp.io/shield.api/EventBonus"></a>
 
-## ♛ 🛠️ Features:
+<br>
+
+## 🛠️ Features:
+
 - Easy to use and setup
 - Setting up in-game or in-console
 - Automatic given rewards to players
 
-About EventBonus:
+## About EventBonus:
 - The EventBonus is for server owners where the server owners forgot to give rewards or compensation to the players
 
-Example:
+## Example:
 - You have an manual uhc event, then all online players are invited then you can put the names in the bonus key then if the player goes online the next day, then the reward will automatically be given immediately without asking or pinging the owner who forgot to give the reward they should have.
 
-## 🔧 How to install EventBonus? 
+<br>
+
+# 🔧 How to install EventBonus? 
 How to install EventBonus?
 1) [Download](https://poggit.pmmp.io/ci/EventBonus/~) latest stable version from poggit  
 2) Move dowloaded file to your server **/plugins/** folder  
 3) Restart the server and enjoy!
-  
-## ✍ EventBonus commands  
-Commands
+
+<br>
+
+# ✍ EventBonus commands  
+**Commands**
 | **Command** | **Description** |  **Usage** |
 | --- | --- |  --- |
 | **/bonus** | **the main command of eventbonus** | /bonus |
@@ -44,11 +49,11 @@ Commands
 
 <br>
 
-## 📃  Permission
+# 📃  Other Stuffs
 Permission
 - lentou.eventbonus.command | default: op
-  
-## 🔧 Configuration  
+
+Configuration  
 - Default configuration:
 
 ```yaml  
@@ -81,6 +86,4 @@ bonus:
     message: "&eYou received an Example Bonus Key from &cHalloween Event, &eEnjoy your Reward :) - &bL2"
 ```
 
-##  💡 License  
-  
 Full license [here](https://github.com/Lentou/EventBonus/blob/main/LICENSE).
