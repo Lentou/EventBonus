@@ -89,7 +89,7 @@ class BonusCommand extends Command {
 				}
 				
 				if (in_array($playerName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
-					$sender->sendMessage(TextFormat::RED . "Player " . $playName . " is already registered in " . $bonusName . " bonus list");
+					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " is already registered in " . $bonusName . " bonus list");
 					return false;
 				}
 				
@@ -112,7 +112,7 @@ class BonusCommand extends Command {
 				}
 				
 				if (in_array($playerName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
-					$sender->sendMessage(TextFormat::RED . "Player " . $playName . " doesn't exists in " . $bonusName . " bonus list");
+					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " doesn't exists in " . $bonusName . " bonus list");
 					return false;
 				}
 				
