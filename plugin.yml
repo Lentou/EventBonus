@@ -1,0 +1,6 @@
+---
+name: EventBonus
+version: 0.0.1
+main: lentou\EventBonus\Main
+api: 3.25.2
+...

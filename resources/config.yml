@@ -1,0 +1,29 @@
+---
+# EventBonus by lentou
+# the configuration of eventbonus
+
+# the bonus array that gives you a reward!
+# you can manually add the bonus by copying my template
+# or just use commands in-game or in-console
+# supported placeholders in this plugin
+# for cmds: & - color code, {player} - player's name
+bonus:
+  # the bonus key
+  example:
+    # the player names who can receive the rewards when they join or online!
+    # if they already receive the reward then the name will be removed in the list
+    # the name must be small letters
+    players:
+      - "hytlenz"
+      - "xlentou"
+      - "rhevisco"
+      - "speczgm"
+    # the command list for executing all commands for giving players a bonus/reward!
+    # i dont support items here because give command can enchant an item, even an custom ones!
+    cmds:
+      - "givemoney {player} 10000"
+      - "give {player} diamond 100"
+      - "give {player} stick 1 {display:{Name:'§r§6§lEvent Stick'},ench:[{id:9s,lvl:2s},{id:10s,lvl:2s}]}"
+    # the message when the player receive the bonus
+    message: "&eYou received an Example Bonus Key from &cHalloween Event, &eEnjoy your Reward :) - &bL2"
+...
