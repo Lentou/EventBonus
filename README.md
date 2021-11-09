@@ -1,7 +1,9 @@
 # EventBonus
 a pocketmine plugin where rewards are set depending on commands given by the owner
+<br>
 [![](https://poggit.pmmp.io/shield.state/EventBonus)](https://poggit.pmmp.io/p/EventBonus)
 <a href="https://poggit.pmmp.io/p/EventBonus"><img src="https://poggit.pmmp.io/shield.state/EventBonus"></a>
+<br>
 [![](https://poggit.pmmp.io/shield.api/EventBonus)](https://poggit.pmmp.io/p/EventBonus)
 <a href="https://poggit.pmmp.io/p/EventBonus"><img src="https://poggit.pmmp.io/shield.api/EventBonus"></a>
 
