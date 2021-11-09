@@ -17,9 +17,9 @@ Example:
 2) Move dowloaded file to your server **/plugins/** folder  
 3) Restart the server and enjoy!
   
-## ✍ EventBonus commands   
-<br> 
-| **Command** | **Description** |  **Usage ** |
+## ✍ EventBonus commands  
+
+| **Command** | **Description** |  **Usage** |
 | --- | --- |  --- |
 | **/bonus** | **the main command of eventbonus** | /bonus |
 
@@ -33,6 +33,7 @@ Example:
 | **addcmd** | adding command in eventbonus key | /bonus addcmd <bonus_name> <command> |
 | **delcmd** | deleting command in eventbonus key | /bonus delcmd <bonus_name> <command> |
 | **list** | list of eventbonus keys | /bonus list |
+
 <br>
 
 ## 📃  Permissions  
