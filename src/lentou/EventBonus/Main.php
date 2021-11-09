@@ -18,7 +18,7 @@ class Main extends PluginBase {
 
 	use SingletonTrait;
 	
-	protected function onEnable() : void {
+	public function onEnable() : void {
 		self::setInstance($this);
 		$this->saveDefaultConfig();
 		$this->getServer()->getPluginManager()->registerEvents(new BonusEvent(), $this);
@@ -100,11 +100,13 @@ class Main extends PluginBase {
 	}
 	
 	public function giveEventBonus(Player $player, string $bonusName) : void {
-		foreach ($this->getConfig()->getNested("bonus." . $bonusName . ".cmds") as $command) {
-			$command = str_replace('{player}', '"' . $player->getName() . '"', $command);
-			$this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), $command);
+		if ($player instanceof Player) {
+			foreach ($this->getConfig()->getNested("bonus." . $bonusName . ".cmds") as $command) {
+				$command = str_replace('{player}', '"' . $player->getName() . '"', $command);
+				$this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), $command);
+			}
+			$player->sendMessage(TextFormat::colorize($this->getConfig()->getNested("bonus." . $bonusName . ".message")));
+			$this->delPlayerBonus(strtolower($player->getName()), $bonusName);
 		}
-		$player->sendMessage(TextFormat::colorize($this->getConfig()->getNested("bonus." . $bonusName . ".message")));
-		$this->delPlayerBonus(strtolower($player->getName()), $bonusName);
 	}
 }
