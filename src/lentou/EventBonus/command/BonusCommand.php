@@ -32,7 +32,6 @@ class BonusCommand extends Command {
 			return false;
 		}
 		
-		
 		switch($args[0]) {
 			case "make":
 				if (empty($args[1])) {
