@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace lentou\EventBonus\command;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
