@@ -21,7 +21,7 @@ class Main extends PluginBase {
 	protected function onEnable() : void {
 		self::setInstance($this);
 		$this->saveDefaultConfig();
-		$this->getServer()->getPluginManager()->registerEvents(new BonusEvent(), $this);
+		$this->getServer()->getPluginManager()->registerEvents(new BonusEvent($this), $this);
 		$this->getServer()->getCommandMap()->register("EventBonus", new BonusCommand("bonus", $this));
 		
 		$this->getScheduler()->scheduleDelayedRepeatingTask(new ClosureTask(function(int $currentTick) : void {
