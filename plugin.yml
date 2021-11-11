@@ -1,9 +1,9 @@
 ---
 name: EventBonus
-version: 0.1.0
+version: 1.0.0
 main: lentou\EventBonus\Main
 author: lentou
-api: 4.0.0
+api: 3.0.0
 
 permissions:
   eventbonus.command:
