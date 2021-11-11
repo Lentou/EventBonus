@@ -6,12 +6,13 @@ namespace lentou\EventBonus\command;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\PluginOwned;
+use pocketmine\command\PluginIdentifiableCommand;
+use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 
 use lentou\EventBonus\Main;
 
-class BonusCommand extends Command implements PluginOwned {
+class BonusCommand extends Command implements PluginIdentifiableCommand {
 
 	private Main $plugin;
 	
@@ -203,7 +204,7 @@ class BonusCommand extends Command implements PluginOwned {
 			break;
 			case "list":
 				$sender->sendMessage(TextFormat::YELLOW . "List of EventBonus:");
-				foreach ($this->getMain()->getConfig()->getNested("bonus") as $bonus => $value) {
+				foreach ($this->getPlugin()->getConfig()->getNested("bonus") as $bonus => $value) {
 					$sender->sendMessage(TextFormat::YELLOW . "- Bonus: " . $bonus);
 					$sender->sendMessage(TextFormat::GREEN . "-- Players: " . implode(", ", $value["players"]));
 					$sender->sendMessage(TextFormat::GREEN . "-- Commands: ");
@@ -227,7 +228,7 @@ class BonusCommand extends Command implements PluginOwned {
 		return true;
 	}
 	
-	private function getMain() : Main {
+	public function getPlugin() : Plugin {
 		return $this->plugin;
 	}
 }
