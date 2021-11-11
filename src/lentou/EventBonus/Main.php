@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace lentou\EventBonus;
 
-use pocketmine\player\Player;
+use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
-use pocketmine\console\ConsoleCommandSender;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\utils\TextFormat;
 use pocketmine\scheduler\ClosureTask;
 
@@ -18,7 +18,7 @@ class Main extends PluginBase {
 
 	use SingletonTrait;
 	
-	protected function onEnable() : void {
+	public function onEnable() : void {
 		self::setInstance($this);
 		$this->saveDefaultConfig();
 		$this->getServer()->getPluginManager()->registerEvents(new BonusEvent($this), $this);
@@ -102,7 +102,7 @@ class Main extends PluginBase {
 	public function giveEventBonus(Player $player, string $bonusName) : void {
 		foreach ($this->getConfig()->getNested("bonus." . $bonusName . ".cmds") as $command) {
 			$command = str_replace('{player}', '"' . $player->getName() . '"', $command);
-			$this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), $command);
+			$this->getServer()->dispatchCommand(new ConsoleCommandSender(), $command);
 		}
 		$player->sendMessage(TextFormat::colorize($this->getConfig()->getNested("bonus." . $bonusName . ".message")));
 		$this->delPlayerBonus(strtolower($player->getName()), $bonusName);
