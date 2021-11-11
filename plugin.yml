@@ -6,7 +6,7 @@ author: lentou
 api: 4.0.0
 
 permissions:
-  lentou.eventbonus.command:
+  eventbonus.command:
     default: op
     description: "the main command of eventbonus"
 ...
