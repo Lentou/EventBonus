@@ -16,8 +16,8 @@ a pocketmine plugin where rewards are set depending on commands given by the own
 ## About EventBonus:
 - The EventBonus is for server owners where the server owners forgot to give rewards or compensation to the players
 
-## Example:
-- You have an manual uhc event, then all online players are invited then you can put the names in the bonus key then if the player goes online the next day, then the reward will automatically be given immediately without asking or pinging the owner who forgot to give the reward they should have.
+## Example Scenario:
+- You organized a tournament on the server and everyone who participates can receive rewards but you failed to give everyone the prize that was specifically designed for them. Using the EventBonus Plugin, the plugin can assist you in automatically distributing awards to participants, so that if a player arrives on a different day, they will receive the reward that they have not yet claimed, without having to ask the owner "where is my reward for attending the tournament?"
 
 <br>
 
@@ -51,7 +51,7 @@ How to install EventBonus?
 
 # 📃  Other Stuffs
 Permission
-- lentou.eventbonus.command | default: op
+- eventbonus.command | default: op
 
 Configuration  
 - Default configuration:
