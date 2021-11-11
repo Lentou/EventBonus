@@ -6,19 +6,23 @@ namespace lentou\EventBonus\command;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\PluginOwned;
 use pocketmine\utils\TextFormat;
 
 use lentou\EventBonus\Main;
 
-class BonusCommand extends Command {
+class BonusCommand extends Command implements PluginOwned {
 
-	public function __construct() {
-		parent::__construct("bonus");
+	private Main $plugin;
+	
+	public function __construct(string $name, Main $plugin) {
+		parent::__construct($name);
 		$this->setDescription("the main command of bonus event #L2");
 		$this->setUsage(TextFormat::YELLOW . "Usage: /bonus help");
 		$this->setAliases(["bo", "b"]);
 		$this->setPermission("lentou.eventbonus.command");
 		$this->setPermissionMessage(TextFormat::RED . "You don't have permission to use EventBonus Command!");
+		$this->plugin = $plugin;
 	}
 	
 	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool {
@@ -41,7 +45,7 @@ class BonusCommand extends Command {
 				
 				$bonusName = strtolower($args[1]);
 				
-				if (array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus is already exists, give us a new unique name!");
 					return false;
 				}
@@ -51,9 +55,9 @@ class BonusCommand extends Command {
 					return false;
 				}
 				
-				Main::getInstance()->makeBonus($bonusName);
+				$this->getMain()->makeBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully created a Bonus called " . $bonusName . ", do /bonus addplayer " . $bonusName . " <player> to add an player and received a reward when they joined or online!");
-				$sender->sendMessage(TextFormat::GREEN . "and do /bonus addcmd " . $bonusName . " <cmd_name> to add a command in event bonus reward!");
+				$sender->sendMessage(TextFormat::GREEN . "And do /bonus addcmd " . $bonusName . " <cmd_name> to add a command in event bonus reward!");
 			break;
 			case "del":
 				if (empty($args[1])) {
@@ -64,12 +68,12 @@ class BonusCommand extends Command {
 				
 				$bonusName = strtolower($args[1]);
 				
-				if (!array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
 				
-				Main::getInstance()->delBonus($bonusName);
+				$this->getMain()->delBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted the Bonus called " . $bonusName . ", no more rewards :(");
 			break;
 			case "addplayer":
@@ -82,17 +86,17 @@ class BonusCommand extends Command {
 				$bonusName = strtolower($args[1]);
 				$playerName = strtolower($args[2]);
 				
-				if (!array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
 				
-				if (in_array($playerName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
+				if (in_array($playerName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
 					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " is already registered in " . $bonusName . " bonus list");
 					return false;
 				}
 				
-				Main::getInstance()->addPlayerBonus($playerName, $bonusName);
+				$this->getMain()->addPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added " . $playerName . " in " . $bonusName . " bonus list!");
 			break;
 			case "delplayer":
@@ -105,17 +109,17 @@ class BonusCommand extends Command {
 				$bonusName = strtolower($args[1]);
 				$playerName = strtolower($args[2]);
 				
-				if (!array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
 				
-				if (!in_array($playerName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
+				if (!in_array($playerName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
 					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " doesn't exists in " . $bonusName . " bonus list");
 					return false;
 				}
 				
-				Main::getInstance()->delPlayerBonus($playerName, $bonusName);
+				$this->getMain()->delPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully removed " . $playerName . " in " . $bonusName . " bonus list!");
 			break;
 			case "addcmd":
@@ -129,7 +133,7 @@ class BonusCommand extends Command {
 				$cmdName = strtolower($args[2]);
 				
 				
-				if (!array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
@@ -138,13 +142,13 @@ class BonusCommand extends Command {
 				array_shift($args);
 				$cmdName = trim(implode(" ", $args));
 				
-				if (in_array($cmdName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
+				if (in_array($cmdName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
 					$sender->sendMessage(TextFormat::RED . "Command /" . $cmdName . " is already registered in " . $bonusName . " bonus list");
 					return false;
 				}
 				
 				
-				Main::getInstance()->addCommandBonus($cmdName, $bonusName);
+				$this->getMain()->addCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added /" . $cmdName . " in " . $bonusName . " bonus list!");
 			break;
 			case "delcmd":
@@ -158,7 +162,7 @@ class BonusCommand extends Command {
 				$cmdName = strtolower($args[2]);
 				
 				
-				if (!array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
@@ -167,13 +171,13 @@ class BonusCommand extends Command {
 				array_shift($args);
 				$cmdName = trim(implode(" ", $args));
 				
-				if (!in_array($cmdName, Main::getInstance()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
+				if (!in_array($cmdName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
 					$sender->sendMessage(TextFormat::RED . "Command /" . $cmdName . " doesn't exists in " . $bonusName . " bonus list");
 					return false;
 				}
 				
 				
-				Main::getInstance()->delCommandBonus($cmdName, $bonusName);
+				$this->getMain()->delCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted /" . $cmdName . " in " . $bonusName . " bonus list!");
 			break;
 			case "setmsg":
@@ -186,7 +190,7 @@ class BonusCommand extends Command {
 				$bonusName = strtolower($args[1]);
 				$setMsg = $args[2];
 				
-				if (!array_key_exists($bonusName, Main::getInstance()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
@@ -194,12 +198,12 @@ class BonusCommand extends Command {
 				array_shift($args);
 				array_shift($args);
 				$setMsg = trim(implode(" ", $args));
-				Main::getInstance()->setBonusMsg($setMsg, $bonusName);
+				$this->getMain()->setBonusMsg($setMsg, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully set the message of " . $bonusName);
 			break;
 			case "list":
 				$sender->sendMessage(TextFormat::YELLOW . "List of EventBonus:");
-				foreach (Main::getInstance()->getConfig()->getNested("bonus") as $bonus => $value) {
+				foreach ($this->getMain()->getConfig()->getNested("bonus") as $bonus => $value) {
 					$sender->sendMessage(TextFormat::YELLOW . "- Bonus: " . $bonus);
 					$sender->sendMessage(TextFormat::GREEN . "-- Players: " . implode(", ", $value["players"]));
 					$sender->sendMessage(TextFormat::GREEN . "-- Commands: ");
@@ -221,5 +225,9 @@ class BonusCommand extends Command {
 				
 		}
 		return true;
-	}	
+	}
+	
+	private function getMain() : Main {
+		return $this->plugin;
+	}
 }
