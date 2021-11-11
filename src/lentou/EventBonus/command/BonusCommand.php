@@ -20,7 +20,7 @@ class BonusCommand extends Command implements PluginOwned {
 		$this->setDescription("the main command of bonus event #L2");
 		$this->setUsage(TextFormat::YELLOW . "Usage: /bonus help");
 		$this->setAliases(["bo", "b"]);
-		$this->setPermission("lentou.eventbonus.command");
+		$this->setPermission("eventbonus.command");
 		$this->setPermissionMessage(TextFormat::RED . "You don't have permission to use EventBonus Command!");
 		$this->plugin = $plugin;
 	}
