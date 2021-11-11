@@ -22,7 +22,7 @@ class Main extends PluginBase {
 		self::setInstance($this);
 		$this->saveDefaultConfig();
 		$this->getServer()->getPluginManager()->registerEvents(new BonusEvent(), $this);
-		$this->getServer()->getCommandMap()->register("lentou:bonus", new BonusCommand());
+		$this->getServer()->getCommandMap()->register("EventBonus", new BonusCommand("bonus", $this));
 		
 		$this->getScheduler()->scheduleDelayedRepeatingTask(new ClosureTask(function(int $currentTick) : void {
 			foreach($this->getServer()->getOnlinePlayers() as $player){
