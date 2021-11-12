@@ -7,7 +7,6 @@ namespace lentou\EventBonus\command;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
-use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 
 use lentou\EventBonus\Main;
@@ -228,7 +227,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 		return true;
 	}
 	
-	public function getPlugin() : Plugin {
+	public function getPlugin() : Main {
 		return $this->plugin;
 	}
 }
