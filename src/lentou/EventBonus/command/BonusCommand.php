@@ -46,7 +46,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				
 				$bonusName = strtolower($args[1]);
 				
-				if (array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus is already exists, give us a new unique name!");
 					return false;
 				}
@@ -56,7 +56,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 					return false;
 				}
 				
-				$this->getMain()->makeBonus($bonusName);
+				$this->getPlugin()->makeBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully created a Bonus called " . $bonusName . ", do /bonus addplayer " . $bonusName . " <player> to add an player and received a reward when they joined or online!");
 				$sender->sendMessage(TextFormat::GREEN . "And do /bonus addcmd " . $bonusName . " <cmd_name> to add a command in event bonus reward!");
 			break;
@@ -69,12 +69,12 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				
 				$bonusName = strtolower($args[1]);
 				
-				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
 				
-				$this->getMain()->delBonus($bonusName);
+				$this->getPlugin()->delBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted the Bonus called " . $bonusName . ", no more rewards :(");
 			break;
 			case "addplayer":
@@ -87,17 +87,17 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				$bonusName = strtolower($args[1]);
 				$playerName = strtolower($args[2]);
 				
-				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
 				
-				if (in_array($playerName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
+				if (in_array($playerName, $this->getPlugin()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
 					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " is already registered in " . $bonusName . " bonus list");
 					return false;
 				}
 				
-				$this->getMain()->addPlayerBonus($playerName, $bonusName);
+				$this->getPlugin()->addPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added " . $playerName . " in " . $bonusName . " bonus list!");
 			break;
 			case "delplayer":
@@ -110,17 +110,17 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				$bonusName = strtolower($args[1]);
 				$playerName = strtolower($args[2]);
 				
-				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
 				
-				if (!in_array($playerName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
+				if (!in_array($playerName, $this->getPlugin()->getConfig()->getNested("bonus." . $bonusName . ".players"))) {
 					$sender->sendMessage(TextFormat::RED . "Player " . $playerName . " doesn't exists in " . $bonusName . " bonus list");
 					return false;
 				}
 				
-				$this->getMain()->delPlayerBonus($playerName, $bonusName);
+				$this->getPlugin()->delPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully removed " . $playerName . " in " . $bonusName . " bonus list!");
 			break;
 			case "addcmd":
@@ -134,7 +134,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				$cmdName = strtolower($args[2]);
 				
 				
-				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
@@ -143,13 +143,13 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				array_shift($args);
 				$cmdName = trim(implode(" ", $args));
 				
-				if (in_array($cmdName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
+				if (in_array($cmdName, $this->getPlugin()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
 					$sender->sendMessage(TextFormat::RED . "Command /" . $cmdName . " is already registered in " . $bonusName . " bonus list");
 					return false;
 				}
 				
 				
-				$this->getMain()->addCommandBonus($cmdName, $bonusName);
+				$this->getPlugin()->addCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added /" . $cmdName . " in " . $bonusName . " bonus list!");
 			break;
 			case "delcmd":
@@ -163,7 +163,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				$cmdName = strtolower($args[2]);
 				
 				
-				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
@@ -172,13 +172,13 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				array_shift($args);
 				$cmdName = trim(implode(" ", $args));
 				
-				if (!in_array($cmdName, $this->getMain()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
+				if (!in_array($cmdName, $this->getPlugin()->getConfig()->getNested("bonus." . $bonusName . ".cmds"))) {
 					$sender->sendMessage(TextFormat::RED . "Command /" . $cmdName . " doesn't exists in " . $bonusName . " bonus list");
 					return false;
 				}
 				
 				
-				$this->getMain()->delCommandBonus($cmdName, $bonusName);
+				$this->getPlugin()->delCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted /" . $cmdName . " in " . $bonusName . " bonus list!");
 			break;
 			case "setmsg":
@@ -191,7 +191,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				$bonusName = strtolower($args[1]);
 				$setMsg = $args[2];
 				
-				if (!array_key_exists($bonusName, $this->getMain()->getConfig()->getNested("bonus"))) {
+				if (!array_key_exists($bonusName, $this->getPlugin()->getConfig()->getNested("bonus"))) {
 					$sender->sendMessage(TextFormat::RED . "This Bonus doesn't exists!");
 					return false;
 				}
@@ -199,7 +199,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				array_shift($args);
 				array_shift($args);
 				$setMsg = trim(implode(" ", $args));
-				$this->getMain()->setBonusMsg($setMsg, $bonusName);
+				$this->getPlugin()->setBonusMsg($setMsg, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully set the message of " . $bonusName);
 			break;
 			case "list":
