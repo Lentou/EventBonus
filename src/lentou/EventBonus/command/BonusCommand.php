@@ -56,7 +56,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 					return false;
 				}
 				
-				$this->getPlugin()->makeBonus($bonusName);
+				Main::getInstance()->makeBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully created a Bonus called " . $bonusName . ", do /bonus addplayer " . $bonusName . " <player> to add an player and received a reward when they joined or online!");
 				$sender->sendMessage(TextFormat::GREEN . "And do /bonus addcmd " . $bonusName . " <cmd_name> to add a command in event bonus reward!");
 			break;
@@ -74,7 +74,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 					return false;
 				}
 				
-				$this->getPlugin()->delBonus($bonusName);
+				Main::getInstance()->delBonus($bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted the Bonus called " . $bonusName . ", no more rewards :(");
 			break;
 			case "addplayer":
@@ -97,7 +97,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 					return false;
 				}
 				
-				$this->getPlugin()->addPlayerBonus($playerName, $bonusName);
+				Main::getInstance()->addPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added " . $playerName . " in " . $bonusName . " bonus list!");
 			break;
 			case "delplayer":
@@ -120,7 +120,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 					return false;
 				}
 				
-				$this->getPlugin()->delPlayerBonus($playerName, $bonusName);
+				Main::getInstance()->delPlayerBonus($playerName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully removed " . $playerName . " in " . $bonusName . " bonus list!");
 			break;
 			case "addcmd":
@@ -149,7 +149,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				}
 				
 				
-				$this->getPlugin()->addCommandBonus($cmdName, $bonusName);
+				Main::getInstance()->addCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully added /" . $cmdName . " in " . $bonusName . " bonus list!");
 			break;
 			case "delcmd":
@@ -178,7 +178,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				}
 				
 				
-				$this->getPlugin()->delCommandBonus($cmdName, $bonusName);
+				Main::getInstance()->delCommandBonus($cmdName, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully deleted /" . $cmdName . " in " . $bonusName . " bonus list!");
 			break;
 			case "setmsg":
@@ -199,7 +199,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 				array_shift($args);
 				array_shift($args);
 				$setMsg = trim(implode(" ", $args));
-				$this->getPlugin()->setBonusMsg($setMsg, $bonusName);
+				Main::getInstance()->setBonusMsg($setMsg, $bonusName);
 				$sender->sendMessage(TextFormat::GREEN . "Successfully set the message of " . $bonusName);
 			break;
 			case "list":
