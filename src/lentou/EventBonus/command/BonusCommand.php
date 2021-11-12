@@ -7,6 +7,7 @@ namespace lentou\EventBonus\command;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
+use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 
 use lentou\EventBonus\Main;
@@ -15,14 +16,14 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 
 	private Main $plugin;
 	
-	public function __construct(string $name, Main $plugin) {
+	public function __construct(string $name, Main $owner) {
 		parent::__construct($name);
 		$this->setDescription("the main command of bonus event #L2");
 		$this->setUsage(TextFormat::YELLOW . "Usage: /bonus help");
 		$this->setAliases(["bo", "b"]);
 		$this->setPermission("eventbonus.command");
 		$this->setPermissionMessage(TextFormat::RED . "You don't have permission to use EventBonus Command!");
-		$this->plugin = $plugin;
+		$this->plugin = $owner;
 	}
 	
 	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool {
@@ -227,7 +228,7 @@ class BonusCommand extends Command implements PluginIdentifiableCommand {
 		return true;
 	}
 	
-	public function getPlugin() : Main {
+	public function getPlugin() : Plugin {
 		return $this->plugin;
 	}
 }
